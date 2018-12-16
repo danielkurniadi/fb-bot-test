@@ -1,0 +1,26 @@
+{
+  "name": "chatbot-webhook",
+  "version": "1.0.0",
+  "description": "Webhook API for Chatbot",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "PINTU",
+    "Chatbot",
+    "Server"
+  ],
+  "author": "PINTU",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "request": "^2.88.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.6"
+  }
+}
