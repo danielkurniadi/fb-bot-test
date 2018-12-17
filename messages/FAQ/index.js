@@ -15,4 +15,5 @@ const FAQ_NTU = {
 }
 
 module.exports = {
+	FAQs : {FAQ_NTU}
 };
