@@ -1,4 +1,4 @@
-const message = require('../../model/facebook/message');
+const messageHandler = require('../../model/facebook/message');
 
 module.exports = function(req, res) {
 	let body = req.body;
@@ -9,8 +9,13 @@ module.exports = function(req, res) {
 		body.entry.forEach(function(entry) {
 			// Gets the message. entry.messaging is an array, but
 			// will only ever contain one message, so we get index 0
-			let webhookEvent = entry.messaging[0];
-			message.processMessage(webhookEvent);
+			entry.messaging.forEach( webhookEvent=>{
+				if (webhookEvent.message && webhookEvent.message.text){ 
+					messageHandler.processMessage(webhookEvent) 
+				}
+			});
+			// let webhookEvent = entry.messaging[0];
+			// message.processMessage(webhookEvent);
 		});
 
 		// Returns a '200 OK' response to all requests

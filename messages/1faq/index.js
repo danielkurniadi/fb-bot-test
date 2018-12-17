@@ -1,4 +1,5 @@
-module.exports = {
+
+const FAQ_NTU = {
 	title: 'FAQ', // The title of the quick reply button
 	payload: 'GET_FAQ',
 	reply: () => {
@@ -8,7 +9,10 @@ module.exports = {
 			// this faq's quickReply need to be hooked automatically
 			// with the 1what_is_ntu folder since
 			// the payload is 'WHAT_IS_NTU'
-			quickReply: ['WHAT_IS_NTU']
+			quickReply: ['WHAT_IS_NTU', 'Admission', 'Financial Assistance', 'CCAs', 'Hostel']
 		};
 	}
+}
+
+module.exports = {
 };
