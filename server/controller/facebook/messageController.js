@@ -17,7 +17,6 @@ module.exports = function(req, res) {
 			// send message
 			messenger.sendMessage(senderId, processedMessage);
 		});
-
 		// Returns a '200 OK' response to all requests
 		res.status(200).send('EVENT_RECEIVED');
 	} else {
