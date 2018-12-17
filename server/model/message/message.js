@@ -16,7 +16,15 @@ const NORMAL_MESSAGE = 'NORMAL_MESSAGE';
  * @param {String} payload
  * @return {MessageResponse} the message response
  */
-const getResponse = ({ text, payload }) => {};
+
+
+const getResponse = ({ text, payload }) => {
+
+	switch(payload){
+		
+	}
+
+};
 
 module.exports = {
 	getResponse,
