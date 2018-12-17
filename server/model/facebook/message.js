@@ -3,12 +3,13 @@ const { getResponse, CONSTANT } = require('../message/message');
 
 const processMessage = event => {
 	const { text, payload } = event;
-	const result = getResponse({ payload, text });
+	const result = getResponses({ payload, text });
 	switch (result.type) {
 		case CONSTANT.QUICK_REPLY:
-			return createMessageQuickReply(result);
+			const quick_replies = result.quickReplies.map(createMessageQuickReply);
+			return { text: result.text, quick_replies };
 		case CONSTANT.NORMAL_MESSAGE:
-			return { text: result.data };
+			return { text: result.text };
 		default:
 			break;
 	}

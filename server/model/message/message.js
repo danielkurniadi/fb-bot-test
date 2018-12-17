@@ -19,25 +19,22 @@ const NORMAL_MESSAGE = 'NORMAL_MESSAGE';
 
 const FAQ = require('../../../messages/faq');
 
-const getQuickReply = (quickReply)=>{
-	FAQ.forEach((message)=>{
-		if (message.payload == quickReply){
-			return message;
-		}
-	})
-};
+const getResponses = ({ text, payload }) => {
+	for(const key in Object.keys(FAQ)){
+		const message = FAQ[key];
 
-const getResponse = ({ text, payload }) => {
-	FAQ.forEach((message)=>{
-		if (message.payload == payload){
-			const quickReplies = message.quickReply.map(getQuickReply);
-			return quickReplies;
-		}
-	});
+		// if a match found with our response pool
+		if(message.payload == payload){
+			const nextResponses = message.reply();
+			return nextResponses;
+		};
+	};
+
+	// if there is no match with our response pool
+	return {};
 };
 
 module.exports = {
-	getResponse,
-	getQuickReply,
+	getResponses,
 	CONSTANT: { QUICK_REPLY, NORMAL_MESSAGE }
 };

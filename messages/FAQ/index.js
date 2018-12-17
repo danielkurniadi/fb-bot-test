@@ -11,11 +11,11 @@ const FAQ_MAIN = {
 			// this faq's quickReply need to be hooked automatically
 			// with the 1what_is_ntu folder since
 			// the payload is 'WHAT_IS_NTU'
-			quickReply: ['FAQ_ADMINISTRATION', 'FAQ_FINANCIAL', 'FAQ_NTU']
+			quickReplies: [FAQ_NTU]
 		};
 	}
 }
 
 module.exports = {
-	FAQS : {FAQ_MAIN, FAQ_NTU}
+	FAQ_MAIN, FAQ_NTU
 };
