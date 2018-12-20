@@ -11,16 +11,16 @@ const NORMAL_MESSAGE = 'NORMAL_MESSAGE';
  * Create getResponse function which iterates the `./messages` folder
  * then retrieve all the possible payload and text responses
  * based on the text and payload data
- *
+ * 
  * @param {String} text
  * @param {String} payload
  * @return {MessageResponse} the message response
  */
 
-const FAQ = require('../../../messages/faq');
+const allResponses = require('../../../messages/faq');
 
 const getResponses = ({ text:input_text, payload }) => {
-	const {type, text, ...data} = FAQ.filter(messageResponse=> messageResponse.payload == payload)[0].reply();
+	const {type, text, ...data} = allResponses.filter(messageResponse=>messageResponse.payload == payload)[0].reply();
 	return {type, text, data};
 };
 
