@@ -19,19 +19,9 @@ const NORMAL_MESSAGE = 'NORMAL_MESSAGE';
 
 const FAQ = require('../../../messages/faq');
 
-const getResponses = ({ text, payload }) => {
-	for(const key in Object.keys(FAQ)){
-		const message = FAQ[key];
-
-		// if a match found with our response pool
-		if(message.payload == payload){
-			const nextResponses = message.reply();
-			return nextResponses;
-		};
-	};
-
-	// if there is no match with our response pool
-	return {};
+const getResponses = ({ text:input_text, payload }) => {
+	const {type, text, ...data} = FAQ.filter(messageResponse=> messageResponse.payload == payload)[0].reply();
+	return {type, text, data};
 };
 
 module.exports = {

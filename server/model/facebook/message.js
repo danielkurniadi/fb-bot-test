@@ -6,12 +6,14 @@ const processMessage = event => {
 	const result = getResponses({ payload, text });
 	switch (result.type) {
 		case CONSTANT.QUICK_REPLY:
-			const quick_replies = result.quickReplies.map(createMessageQuickReply);
-			return { text: result.text, quick_replies };
+			const quickReplies = result.data.quickReplies.map(createMessageQuickReply);
+			return { text: result.text, content_type: result.type, quick_replies: quickReplies };
+
 		case CONSTANT.NORMAL_MESSAGE:
-			return { text: result.text };
+			return { text: result.text, content_type: result.type };
+
 		default:
-			break;
+			return {};
 	}
 };	
 
