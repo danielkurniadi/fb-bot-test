@@ -19,7 +19,7 @@ var i = 1;
 
 console.log("\nQR:")
 quickReplies.forEach(quickRep => {
-    console.log("Message Response #", i);
+    console.log("Quick Response #", i);
     console.log("title:", quickRep.title);
     console.log("payload:", quickRep.payload);
     console.log("reply content:");
@@ -28,3 +28,5 @@ quickReplies.forEach(quickRep => {
     console.log("end");
     i++;
 });
+
+console.log("Data from object:\n", result.data);
