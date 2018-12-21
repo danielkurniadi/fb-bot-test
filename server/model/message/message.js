@@ -17,10 +17,11 @@ const NORMAL_MESSAGE = 'NORMAL_MESSAGE';
  * @return {MessageResponse} the message response
  */
 
-const allResponses = require('../../../messages/faq');
+const responses = require('../../../messages/faq');
 
 const getResponses = ({ text:input_text, payload }) => {
-	const {type, text, ...data} = allResponses.filter(messageResponse=>messageResponse.payload == payload)[0].reply();
+	const matchingResponses = responses.filter(response => response.payload == payload);
+	const {type, text, ...data} = matchingResponses[0].reply();
 	return {type, text, data};
 };
 
