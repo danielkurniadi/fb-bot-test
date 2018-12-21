@@ -1,4 +1,4 @@
-const message = require('../../model/facebook/message');
+const messageHandler = require('../../model/facebook/message');
 const messenger = require('../../model/facebook/messenger')
 
 module.exports = function(req, res) {
@@ -12,10 +12,11 @@ module.exports = function(req, res) {
 			// will only ever contain one message, so we get index 0
 			if(entry.messaging){
 				let webhookEvent = entry.messaging[0];
-				let processedMessage = message.processMessage(webhookEvent);
-				let senderId = webhookEvent.sender.id;							
+				// retrieve and process incoming message
+				let message = messageHandler.processMessage(webhookEvent);							
 				// send message
-				messenger.sendMessage(senderId, processedMessage);
+				let senderId = webhookEvent.sender.id;
+				messenger.sendMessage(senderId, message);
 			}
 		});
 		// Returns a '200 OK' response to all requests

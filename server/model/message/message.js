@@ -20,9 +20,13 @@ const NORMAL_MESSAGE = 'NORMAL_MESSAGE';
 const responses = require('../../../messages/faq');
 
 const getResponses = ({ text:input_text, payload }) => {
-	const matchingResponses = responses.filter(response => response.payload == payload);
-	const {type, text, ...data} = matchingResponses[0].reply();
-	return {type, text, data};
+	// TODO: what if the webhook Event doesn't contain payload?
+	if(payload){
+		const matchingResponses = responses.filter(response => response.payload == payload);
+		const {type, text, ...data} = matchingResponses[0].reply();
+		return {type, text, data};
+	}
+	return {type: NORMAL_MESSAGE, text: "Hello World!"};
 };
 
 module.exports = {

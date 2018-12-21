@@ -1,10 +1,22 @@
 const { createMessageQuickReply } = require('./quickReply');
-const { getResponse, CONSTANT } = require('../message/message');
+const { getResponses, CONSTANT } = require('../message/message');
 
 const parseEvent = event=>{
-	const text = event.text;
-	const payload = event.message.quick_replies.payload;
-	return { payload, text }
+	let text = event.text;
+	let payload = null;
+	// if webhook event comes from quick reply (quick_reply)
+	const quick_reply = event.message.quick_reply;
+	if(quick_reply){
+		payload = quick_reply.payload;
+		return { payload, text};
+	}
+	// if webhook event comes from button (array<attachement>)
+	const attachments = event.message.attachments;
+	if(attachments){
+		payload = attachments[0].payload;
+		return { payload, text };
+	}
+	return { payload, text };
 };
 
 const processMessage = event => {
@@ -14,6 +26,7 @@ const processMessage = event => {
 
 	switch (result.type) {
 		case CONSTANT.QUICK_REPLY:
+			// parse data to quick_replies 
 			const quickReplies = result.data
 				.quickReplies
 				.map(createMessageQuickReply);
