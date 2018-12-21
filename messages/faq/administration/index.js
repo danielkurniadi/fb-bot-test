@@ -1,6 +1,6 @@
 module.exports = {
-	title: 'What is NTU?', // The title of the quick reply button
-	payload: 'FAQ_ADMINISTRATION',
+	title: 'Administration', // The title of the quick reply button
+	payload: 'ADMINISTRATION',
 	reply: () => {
 		return {
 			type: 'NORMAL_MESSAGE',
