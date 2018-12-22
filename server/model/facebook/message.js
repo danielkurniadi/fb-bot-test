@@ -2,7 +2,7 @@ const { createMessageQuickReply } = require('./quickReply');
 const { getResponses, CONSTANT } = require('../message/message');
 
 const parseEvent = event=>{
-	let text = event.text;
+	let text = event.message.text;
 	let payload = null;
 	// if webhook event comes from quick reply (quick_reply)
 	const quick_reply = event.message.quick_reply;
@@ -33,10 +33,10 @@ const processMessage = event => {
 			return { text: result.text, content_type: result.type, quick_replies: quickReplies };
 
 		case CONSTANT.NORMAL_MESSAGE:
-			return { text: result.text, content_type: result.type };
+			return { text: result.text + " from testbot!"};
 
 		default:
-			return {};
+			return {text: "Hello World", content_type:"text"};
 	}
 };	
 

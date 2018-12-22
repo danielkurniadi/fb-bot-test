@@ -11,6 +11,7 @@ module.exports = function(req, res) {
 			// Gets the message. entry.messaging is an array, but
 			// will only ever contain one message, so we get index 0
 			if(entry.messaging){
+				console.log("Event coming in with messaging...");
 				let webhookEvent = entry.messaging[0];
 				// retrieve and process incoming message
 				let message = messageHandler.processMessage(webhookEvent);							
@@ -20,7 +21,7 @@ module.exports = function(req, res) {
 			}
 		});
 		// Returns a '200 OK' response to all requests
-		res.status(200).end();
+		res.status(200).send('Event Received');
 	} else {
 		// Returns a '404 Not Found' if event is not from a page subscription
 		console.log('event failed');

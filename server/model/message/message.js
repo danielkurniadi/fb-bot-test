@@ -28,7 +28,7 @@ const getResponses = ({ text: inputText, payload }) => {
 		}
 	}
 	// if event has no payload or if there is not matching with any response
-	return {type: NORMAL_MESSAGE, text: "Hello World!"};
+	return {type: NORMAL_MESSAGE, text: inputText};
 };
 
 module.exports = {
